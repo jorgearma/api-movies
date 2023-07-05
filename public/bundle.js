@@ -31,7 +31,7 @@ const obtenergenero = (id, generos) => {
 };
 
 const fechtpopulares = async(filtro = 'movie') =>{
-    const tipo = filtro === 'movie' ? 'movie' : 'tv';
+    const tipo = filtro === 'movie' ? 'movie':'tv';
 
     const url = `https://api.themoviedb.org/3/${tipo}/popular?api_key=3920b5092f07054465522c38a24bcee3&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
 
@@ -60,15 +60,25 @@ const fechtpopulares = async(filtro = 'movie') =>{
 
 //hacemos la peticion a la api
 
-const cargartitulos = (resultados) =>{
+const cargartitulos = (resultados, tipo) =>{
 
     //selecionamos el contenedor
     const contenedor = document.querySelector('#populares .main__grid');
     //reiniciamos el contenedor antes de cargar el siguiente
     contenedor.innerHTML = '';
+
+    
     
     //creamos una plantilla por cada resultado de fetchpopulares.js
     resultados.forEach((resultado) => {
+        //aqui cambio el resultado.name por que la peticion es distinta para cada uno 
+        let titulo;
+        if (tipo === 'serie') {
+            titulo = resultado.name;
+        } else {
+            titulo = resultado.title;
+        }
+
 
         const plantilla = `
     <div class="main__media">
@@ -76,7 +86,7 @@ const cargartitulos = (resultados) =>{
             <img class="main__media-img" src="https://image.tmdb.org/t/p/w500/${resultado.poster_path
             }" alt="" />
         </a>
-        <p class="main__media-titulo">${resultado.title}</p>
+        <p class="main__media-titulo">${titulo}</p>
         <p class="main__media-fecha">${resultado.genero}</p>
     </div>
     `;
@@ -134,7 +144,7 @@ filtroserie.addEventListener('click', async(e) =>{
 
     const resultados = await fechtpopulares('tv');
     
-    cargartitulos(resultados);
+    cargartitulos(resultados, 'serie');
 
     filtropelicula.classList.remove('btn--active');
     filtroserie.classList.add('btn--active');

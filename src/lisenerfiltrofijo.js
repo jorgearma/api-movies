@@ -28,7 +28,7 @@ filtroserie.addEventListener('click', async(e) =>{
 
     const resultados = await fechtpopulares('tv');
     
-    cargartitulos(resultados);
+    cargartitulos(resultados, 'serie');
 
     filtropelicula.classList.remove('btn--active')
     filtroserie.classList.add('btn--active')
