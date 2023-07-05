@@ -1,19 +1,28 @@
 const cargartitulos = (resultados) =>{
- 
-    const plantilla = `
+
+    //selecionamos el contenedor
+    const contenedor = document.querySelector('#populares .main__grid');
+    //reiniciamos el contenedor antes de cargar el siguiente
+    contenedor.innerHTML = '';
+    
+    //creamos una plantilla por cada resultado de fetchpopulares.js
+    resultados.forEach((resultado) => {
+
+        const plantilla = `
     <div class="main__media">
         <a href="#" class="main__media-thumb">
-            <img class="main__media-img" src="./img/1.png" alt="" />
+            <img class="main__media-img" src="https://image.tmdb.org/t/p/w500/${resultado.poster_path
+            }" alt="" />
         </a>
-        <p class="main__media-titulo">The boys</p>
-        <p class="main__media-fecha">2021</p>
+        <p class="main__media-titulo">${resultado.title}</p>
+        <p class="main__media-fecha">${resultado.genero}</p>
     </div>
-    `
+    `;
 
-    resultados.forEach((resultado) => {
-        console.log(resultado);
-        
+    //insertamos la plantilla en el DOM
+    contenedor.insertAdjacentHTML('beforeend', plantilla);
     });
+
     
 };
 export default cargartitulos;
