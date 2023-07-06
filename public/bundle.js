@@ -59,7 +59,7 @@ const fechtpopulares = async(filtro = 'movie') =>{
         // Iteramos sobre cada resultado
         resultados.forEach((resultado) => {
             // Usamos la función obtenergenero para obtener el nombre del genero correspondiente a la id del genero en cada resultado y lo asignamos a una nueva propiedad 'genero' en el resultado
-            resultados.genero = obtenergenero(resultado.genre_ids[0],generos );
+            resultado.genero = obtenergenero(resultado.genre_ids[0],generos );
         });
 
         // Devolvemos los resultados con el género añadido
