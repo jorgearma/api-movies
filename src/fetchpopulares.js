@@ -13,7 +13,6 @@ const fechtpopulares = async(filtro = 'movie') =>{
         const resultados = datos.results;
 
         const generos = await fetchgeneros();
-        
         resultados.forEach((resultado) => {
             //obtenemso el genero de cada pelicula y le ponemos en una nueva propieda
             resultado.genero = obtenergenero(resultado.genre_ids[0],generos )
