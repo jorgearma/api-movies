@@ -16,4 +16,10 @@ const cargar = async () => {
 
 cargar();
 
+const contenedorgenero = document.getElementById('filtro-generos');
+const borrarboron = () => {
+    contenedorgenero.querySelectorAll('btn')
+    console.log(borrarboron);
+}    
+
 

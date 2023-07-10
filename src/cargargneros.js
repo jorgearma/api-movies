@@ -1,7 +1,6 @@
 import fetchgeneros from "./fetchgeneros";
 
 const contenedorgenero = document.getElementById('filtro-generos');
-
 //cargarmos los botones de genero
 const cargargeneros = async(filtro) => {
     //tremos los generos y con filtro entro movi o tv
@@ -18,6 +17,15 @@ const cargargeneros = async(filtro) => {
             contenedorgenero.appendChild(btn)             //aqui aderimos el boton al DOM
             
         });
+const borrarbtn = contenedorgenero.querySelectorAll('.btn')
+        borrarbtn.forEach((e) =>{
+            const textbtn = e.innerText
+            if(textbtn === 'Action' ||  textbtn === 'Comedy' ){
+                e.remove()
+
+            }
+        })
+  
     }   
 
 export default cargargeneros
